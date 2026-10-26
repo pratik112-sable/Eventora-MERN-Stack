@@ -1,0 +1,12 @@
+{
+  "name": "eventora",
+  "private": true,
+  "scripts": {
+    "install:all": "concurrently --names server-install,client-install \"npm install --prefix server\" \"npm install --prefix client/vite-project\"",
+    "dev": "concurrently --kill-others --names server,client \"npm --prefix server run dev\" \"npm --prefix client/vite-project run dev\"",
+    "build:client": "npm --prefix client/vite-project run build"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
