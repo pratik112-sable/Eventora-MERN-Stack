@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "installCommand": "npm run install:vercel",
+  "installCommand": "npm ci --prefix server && npm ci --prefix client/vite-project",
   "buildCommand": "npm run build",
   "outputDirectory": "client/vite-project/dist",
   "rewrites": [
