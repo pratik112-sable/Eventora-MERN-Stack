@@ -4,7 +4,9 @@
   "scripts": {
     "install:all": "concurrently --names server-install,client-install \"npm install --prefix server\" \"npm install --prefix client/vite-project\"",
     "dev": "concurrently --kill-others --names server,client \"npm --prefix server run dev\" \"npm --prefix client/vite-project run dev\"",
-    "build:client": "npm --prefix client/vite-project run build"
+    "build": "npm --prefix client/vite-project run build",
+    "build:client": "npm run build",
+    "install:vercel": "npm ci --prefix server && npm ci --prefix client/vite-project"
   },
   "devDependencies": {
     "concurrently": "^9.2.1"

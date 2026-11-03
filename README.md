@@ -205,6 +205,20 @@ npm run dev
 | `GET` | `/api/bookings/my` | Bearer (User) | Retrieves all bookings and live statuses (`Pending` / `Confirmed`) for the logged-in user. |
 | `DELETE` | `/api/bookings/:id` | Bearer (Admin/User) | Cancels a booking (User) or rejects an incoming booking request (Admin). |
 
+## Deploy to Vercel
+
+The repository is configured as one Vercel project: Vite serves the frontend, and the Express API runs as a Vercel function at `/api/*`. The frontend and API share the deployment domain.
+
+1. Import this GitHub repository in Vercel and leave **Root Directory** set to the repository root.
+2. In the Vercel project settings, add these environment variables for Production (and Preview if needed):
+   - `MONGO_URI` — a MongoDB Atlas connection string; allow Vercel's network access in Atlas.
+   - `JWT_SECRET` — a long, random secret.
+   - `EMAIL_HOST`, `EMAIL_PORT`, `EMAIL_USER`, `EMAIL_PASS`, and `EMAIL_FROM` — credentials for an SMTP provider.
+3. Deploy. The Vercel configuration installs the server and client dependencies, builds the frontend, and routes API requests to the Express function.
+4. Open `/api/health` on the deployed domain to verify the API function is responding. This health endpoint does not require a database; app routes return a service-unavailable response until `MONGO_URI` is configured and reachable.
+
+For local development, set `server/.env` using `server/.env.example`, start MongoDB, and run `npm run dev` from the repository root. Vite proxies `/api` requests to the local Express server.
+
 ---
 
 ## 🧪 Postman Collection & Automation

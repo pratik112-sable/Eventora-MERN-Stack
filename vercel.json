@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "installCommand": "npm run install:vercel",
+  "buildCommand": "npm run build",
+  "outputDirectory": "client/vite-project/dist",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
